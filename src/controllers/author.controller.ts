@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const authorClient = new PrismaClient().author;
 
 // getAllAuthors
-export const getAllAuthors =async (req, res) => {
+export const getAllAuthors = async (req, res) => {
     try {
         const allAuthors = await authorClient.findMany({
             include: {

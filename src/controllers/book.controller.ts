@@ -35,8 +35,8 @@ export const createBook = async (req, res) => {
     const bookData = req.body;
 
     const book = await bookClient.create({
-      data: {
-        title: bookData.title,
+        data: {
+            title: bookData.title,
         author: {
             connect: { id: bookData.authorId },
         },
