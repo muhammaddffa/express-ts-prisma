@@ -11,7 +11,7 @@ export const getAllAuthors = async (req, res) => {
             }
         });
 
-        res.status(200).json({ data: allAuthors})
+        res.status(200).send({ data: allAuthors})
     } catch (e) {
         console.log(e);
         
@@ -32,7 +32,7 @@ export const getAuthorById = async (req, res) => {
             }
         });
 
-        res.status(200).json({ data: author})
+        res.status(200).send({ data: author})
     } catch (e) {
         console.log(e);
         

@@ -7,7 +7,7 @@ import bookRouter from "./routes/book.router";
 const app = express();
 // const cors = require('cors');
 // const http = require('http');
-const port = process.env.PORT || 7575; 
+const port = process.env.PORT || 6565; 
 
 app.use(express.json());
 
