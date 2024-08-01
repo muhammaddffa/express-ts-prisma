@@ -21,5 +21,6 @@ model Book {
   author Author @relation(fields: [authorId], references: [id])
   authorId String
   title String
+  imageUrl String?
 }
 

@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 
-const bookClient = new PrismaClient().book;
+const prisma = new PrismaClient();
+const bookClient = prisma.book;
 
 // getAllBooks
 export const getAllBooks = async (req, res) => {
   try {
     const allBooks = await bookClient.findMany();
-
     res.status(200).json({ data: allBooks });
   } catch (e) {
     console.log(e);
@@ -18,11 +18,8 @@ export const getBookById = async (req, res) => {
   try {
     const bookId = req.params.id;
     const book = await bookClient.findUnique({
-      where: {
-        id: bookId,
-      },
+      where: { id: bookId },
     });
-
     res.status(200).json({ data: book });
   } catch (e) {
     console.log(e);
@@ -32,13 +29,14 @@ export const getBookById = async (req, res) => {
 // createBook
 export const createBook = async (req, res) => {
   try {
-    const bookData = req.body;
+    const { title, authorId, imageUrl } = req.body;
 
     const book = await bookClient.create({
-        data: {
-            title: bookData.title,
+      data: {
+        title,
+        imageUrl,
         author: {
-            connect: { id: bookData.authorId },
+          connect: { id: authorId },
         },
       },
     });
@@ -53,13 +51,17 @@ export const createBook = async (req, res) => {
 export const updateBook = async (req, res) => {
   try {
     const bookId = req.params.id;
-    const bookData = req.body;
+    const { title, authorId, imageUrl } = req.body;
 
     const book = await bookClient.update({
-      where: {
-        id: bookId,
+      where: { id: bookId },
+      data: {
+        title,
+        imageUrl,
+        author: {
+          connect: { id: authorId },
+        },
       },
-      data: bookData,
     });
 
     res.status(200).json({ data: book });
@@ -72,13 +74,12 @@ export const updateBook = async (req, res) => {
 export const deleteBook = async (req, res) => {
   try {
     const bookId = req.params.id;
+
     const book = await bookClient.delete({
-      where: {
-        id: bookId,
-      },
+      where: { id: bookId },
     });
 
-    res.status(200).json({ data: {} });
+    res.status(200).json({ data: book });
   } catch (e) {
     console.log(e);
   }
