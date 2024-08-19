@@ -1,17 +1,15 @@
 import express from "express";
 import authorRouter from "./routes/author.routes";
 import bookRouter from "./routes/book.router";
-// import 'dotenv';
-// import bcrpyt from 'bcrypt';
+import cors from 'cors';
 
 const app = express();
-// const cors = require('cors');
-// const http = require('http');
-const port = process.env.PORT || 6565; 
+const port = process.env.PORT || 6666; 
+
+
+app.use(cors());
 
 app.use(express.json());
-
-// app.use(cors())
 
 app.use("/authors", authorRouter); 
 app.use("/books", bookRouter);
@@ -23,3 +21,5 @@ app.get("/ping", (req, res) => {
 app.listen(port, () => {
   console.log(`Server up and on port: ${port}`);
 });
+
+// export default app;
