@@ -14,7 +14,7 @@ app.use(express.json());
 app.use("/authors", authorRouter); 
 app.use("/books", bookRouter);
 
-app.get("/ping", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json({ message: "Awesome it works 🐻" });
 });
 
