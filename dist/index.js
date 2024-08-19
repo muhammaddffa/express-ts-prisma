@@ -19,5 +19,5 @@ app.get("/ping", (req, res) => {
 app.listen(port, () => {
     console.log(`Server up and on port: ${port}`);
 });
-// export default app;
+exports.default = app;
 //# sourceMappingURL=index.js.map

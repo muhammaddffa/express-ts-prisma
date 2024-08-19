@@ -22,4 +22,4 @@ app.listen(port, () => {
   console.log(`Server up and on port: ${port}`);
 });
 
-// export default app;
+export default app;
